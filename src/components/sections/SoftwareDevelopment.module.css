@@ -1,0 +1,135 @@
+.section {
+  overflow: hidden;
+}
+
+.beam {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 70%;
+  height: 520px;
+  transform: translateX(-50%);
+  background: radial-gradient(ellipse at 50% 0%, rgba(255, 122, 24, 0.12), transparent 65%);
+  pointer-events: none;
+}
+
+.head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 40px;
+  margin-bottom: clamp(40px, 6vw, 64px);
+}
+
+.head > :first-child {
+  margin-bottom: 0;
+}
+
+.headAside {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 18px;
+  flex-shrink: 0;
+}
+
+.terminal {
+  padding: 14px 18px;
+  border-radius: var(--r-md);
+  background: rgba(12, 4, 16, 0.6);
+  border: 1px solid var(--line-strong);
+  font-family: var(--font-mono);
+  font-size: 0.76rem;
+  line-height: 1.8;
+  color: var(--text-soft);
+}
+
+.prompt {
+  color: var(--accent);
+}
+
+.ok {
+  color: #7ee2a8;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 16px;
+}
+
+.grid > li {
+  display: flex;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 24px 22px 26px;
+}
+
+.cardTop {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 26px;
+}
+
+.num {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: var(--dim);
+  transition: color 0.3s ease;
+}
+
+.card:hover .num {
+  color: var(--accent);
+}
+
+.title {
+  font-size: 1.06rem;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.desc {
+  margin-top: 10px;
+  font-size: 0.88rem;
+  line-height: 1.6;
+  color: var(--muted);
+}
+
+@media (max-width: 1240px) {
+  .grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@media (max-width: 1024px) {
+  .head {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+  .card {
+    padding: 22px;
+  }
+  .cardTop {
+    margin-bottom: 18px;
+  }
+}

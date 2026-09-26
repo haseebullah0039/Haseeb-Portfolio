@@ -1,0 +1,321 @@
+/*
+ * Large, clear navbar in the site theme: plum bar, big circular logo with a
+ * two-tone name, bold uppercase links, solid orange CTA and an orange bottom
+ * line with a soft shadow. Becomes more compact after scrolling.
+ */
+.header {
+  --bar-h: var(--nav-h);
+  --logo-size: 68px;
+  position: fixed;
+  inset: 0 0 auto 0;
+  z-index: 100;
+  background:
+    radial-gradient(900px 160px at 50% 0%, rgba(255, 255, 255, 0.035), transparent 70%),
+    linear-gradient(180deg, #2b1530 0%, #211026 100%);
+  box-shadow:
+    0 8px 20px -6px rgba(8, 2, 12, 0.7),
+    0 18px 40px -18px rgba(8, 2, 12, 0.75);
+  transition: box-shadow 0.35s ease;
+}
+
+/* Orange line along the bottom edge (fades out at the far ends) */
+.header::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    rgba(249, 115, 22, 0.15) 0%,
+    rgba(249, 115, 22, 0.9) 18%,
+    rgba(255, 122, 24, 1) 50%,
+    rgba(249, 115, 22, 0.9) 82%,
+    rgba(249, 115, 22, 0.15) 100%
+  );
+  box-shadow: 0 0 12px rgba(255, 122, 24, 0.45);
+  pointer-events: none;
+}
+
+.scrolled {
+  --bar-h: 78px;
+  --logo-size: 56px;
+  box-shadow:
+    0 10px 24px -6px rgba(8, 2, 12, 0.85),
+    0 22px 48px -18px rgba(8, 2, 12, 0.9);
+}
+
+/* The bar spans wider than the page content column. */
+.nav {
+  max-width: calc(1400px + var(--gutter) * 2);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 32px;
+  height: var(--bar-h);
+  transition: height 0.35s var(--ease-out);
+}
+
+.links {
+  display: flex;
+  align-items: center;
+  gap: clamp(18px, 2.4vw, 38px);
+}
+
+.link {
+  position: relative;
+  display: inline-flex;
+  padding: 10px 0;
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #fff;
+  white-space: nowrap;
+  transition: color 0.25s ease;
+}
+
+.linkText {
+  position: relative;
+  z-index: 1;
+}
+
+.link:hover {
+  color: var(--accent-3);
+}
+
+.active,
+.active:hover {
+  color: var(--accent);
+}
+
+/* Sliding orange underline under the active link */
+.indicator {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 3px;
+  border-radius: 3px;
+  background: var(--accent);
+  box-shadow: 0 0 10px rgba(255, 122, 24, 0.6);
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+/* Large solid orange call-to-action */
+.cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 58px;
+  padding: 0 34px;
+  border-radius: 16px;
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  font-weight: 800;
+  letter-spacing: 0.01em;
+  color: #fff;
+  white-space: nowrap;
+  background: linear-gradient(180deg, #ff8a2e 0%, #f47315 100%);
+  border: 1px solid rgba(255, 190, 140, 0.45);
+  box-shadow:
+    0 12px 28px -10px rgba(255, 122, 24, 0.75),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  text-shadow: 0 1px 1px rgba(120, 40, 0, 0.35);
+  transition:
+    transform 0.3s var(--ease-out),
+    box-shadow 0.3s ease,
+    filter 0.3s ease;
+}
+
+.cta:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.06);
+  box-shadow:
+    0 18px 36px -12px rgba(255, 122, 24, 0.9),
+    inset 0 1px 0 rgba(255, 255, 255, 0.35);
+}
+
+.cta:active {
+  transform: translateY(0) scale(0.98);
+}
+
+.scrolled .cta {
+  height: 50px;
+  font-size: 1.08rem;
+}
+
+.toggle {
+  display: none;
+  place-items: center;
+  width: 50px;
+  height: 50px;
+  border-radius: 12px;
+  border: 1px solid var(--line-strong);
+  background: rgba(255, 255, 255, 0.04);
+  transition:
+    border-color 0.3s ease,
+    background-color 0.3s ease;
+}
+
+.toggle:hover {
+  border-color: var(--accent-line);
+  background: var(--accent-soft);
+}
+
+/* Three-line menu icon that morphs into an X when open */
+.bars {
+  position: relative;
+  display: block;
+  width: 24px;
+  height: 18px;
+}
+
+.bars span {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 2.5px;
+  border-radius: 2px;
+  background: var(--text);
+  transition:
+    transform 0.4s var(--ease-out),
+    top 0.4s var(--ease-out),
+    opacity 0.25s ease;
+}
+
+.bars span:nth-child(1) {
+  top: 0;
+}
+
+.bars span:nth-child(2) {
+  top: 7.75px;
+}
+
+.bars span:nth-child(3) {
+  top: 15.5px;
+}
+
+.barsOpen span:nth-child(1) {
+  top: 7.75px;
+  transform: rotate(45deg);
+}
+
+.barsOpen span:nth-child(2) {
+  opacity: 0;
+  transform: scaleX(0.2);
+}
+
+.barsOpen span:nth-child(3) {
+  top: 7.75px;
+  transform: rotate(-45deg);
+}
+
+/* Mobile panel */
+
+.mobile {
+  position: fixed;
+  inset: var(--bar-h) 0 0 0;
+  z-index: 99;
+  overflow-y: auto;
+  background:
+    radial-gradient(600px 400px at 100% 0%, rgba(255, 122, 24, 0.14), transparent 60%),
+    #150919;
+}
+
+.mobileInner {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 40px;
+  min-height: 100%;
+  padding-top: 28px;
+  padding-bottom: 36px;
+}
+
+.mobileLinks {
+  display: flex;
+  flex-direction: column;
+}
+
+.mobileLink {
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+  padding: 12px 0;
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 6vw, 2.1rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--text-soft);
+  border-bottom: 1px solid var(--line);
+  transition: color 0.25s ease, padding-left 0.35s var(--ease-out);
+}
+
+.mobileLink:hover,
+.mobileActive {
+  color: var(--accent);
+  padding-left: 6px;
+}
+
+.mobileIndex {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 500;
+  color: var(--dim);
+}
+
+.mobileFooter {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 18px;
+}
+
+.mobileEmail {
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+.mobileEmail:hover {
+  color: var(--accent);
+}
+
+.mobileTag {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--dim);
+  letter-spacing: 0.04em;
+}
+
+@media (max-width: 1320px) {
+  .nav {
+    gap: 20px;
+  }
+  .link {
+    font-size: 0.92rem;
+    letter-spacing: 0.04em;
+  }
+  .cta {
+    padding: 0 24px;
+    font-size: 1.05rem;
+  }
+}
+
+/* Tablet & mobile: links and CTA move into the menu; only the menu icon shows. */
+@media (max-width: 1180px) {
+  .links,
+  .cta {
+    display: none;
+  }
+  .toggle {
+    display: grid;
+  }
+}

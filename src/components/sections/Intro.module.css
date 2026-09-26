@@ -1,0 +1,19 @@
+.intro {
+  position: relative;
+  padding-block: clamp(56px, 8vw, 96px);
+  border-block: 1px solid var(--line);
+  background: linear-gradient(180deg, rgba(38, 19, 43, 0.5), rgba(38, 19, 43, 0.15));
+}
+
+.statement p {
+  max-width: 1040px;
+  font-family: var(--font-display);
+  font-size: clamp(1.35rem, 3vw, 2.3rem);
+  font-weight: 600;
+  line-height: 1.35;
+  letter-spacing: -0.02em;
+}
+
+.soft {
+  color: var(--dim);
+}

@@ -1,0 +1,42 @@
+.heading {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  max-width: 760px;
+  margin-bottom: clamp(40px, 6vw, 64px);
+}
+
+.center {
+  align-items: center;
+  text-align: center;
+  margin-inline: auto;
+}
+
+.center :global(.eyebrow)::after {
+  content: "";
+  width: 28px;
+  height: 1px;
+  background: linear-gradient(270deg, transparent, var(--accent));
+}
+
+.index {
+  color: var(--dim);
+}
+
+.index::after {
+  content: " /";
+  color: var(--dim);
+}
+
+.title {
+  font-size: clamp(2rem, 4.4vw, 3.4rem);
+  font-weight: 800;
+}
+
+.xl {
+  font-size: clamp(2.3rem, 5.6vw, 4.3rem);
+}
+
+.description {
+  max-width: 640px;
+}

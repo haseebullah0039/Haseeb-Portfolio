@@ -1,0 +1,66 @@
+.hero {
+  position: relative;
+  padding-top: calc(var(--nav-h) + clamp(48px, 8vw, 96px));
+  padding-bottom: clamp(40px, 6vw, 72px);
+}
+
+.hero::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: min(900px, 90%);
+  height: 420px;
+  transform: translateX(-50%);
+  background: radial-gradient(ellipse at 50% 0%, rgba(255, 122, 24, 0.14), transparent 65%);
+  pointer-events: none;
+  z-index: -1;
+}
+
+.crumbs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 28px;
+  font-size: 0.84rem;
+  color: var(--dim);
+}
+
+.crumbs li {
+  display: inline-flex;
+  gap: 8px;
+}
+
+.crumbs a {
+  color: var(--muted);
+  transition: color 0.2s ease;
+}
+
+.crumbs a:hover {
+  color: var(--accent);
+}
+
+.crumbs [aria-current] {
+  color: var(--text-soft);
+}
+
+.title {
+  max-width: 980px;
+  margin-top: 18px;
+  font-size: clamp(2.4rem, 6.4vw, 5rem);
+  font-weight: 800;
+  letter-spacing: -0.035em;
+  line-height: 1.02;
+}
+
+.desc {
+  max-width: 700px;
+  margin-top: 22px;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-top: 32px;
+}

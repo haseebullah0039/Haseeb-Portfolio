@@ -1,0 +1,83 @@
+.logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;
+}
+
+.mark {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  transition:
+    transform 0.5s var(--ease-out),
+    width 0.35s var(--ease-out),
+    height 0.35s var(--ease-out);
+}
+
+.mark img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.logo:hover .mark {
+  transform: rotate(-6deg) scale(1.05);
+}
+
+.text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1;
+}
+
+.word {
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: #fff;
+}
+
+.accentPart {
+  color: var(--accent);
+}
+
+/* ---------- Large (navbar) ---------- */
+
+.large {
+  gap: 16px;
+}
+
+.large .mark {
+  width: var(--logo-size, 68px);
+  height: var(--logo-size, 68px);
+  padding: 3px;
+  background: radial-gradient(circle, #2e1733 60%, #1c0c20);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  box-shadow:
+    0 0 0 3px rgba(255, 122, 24, 0.12),
+    0 8px 24px -6px rgba(0, 0, 0, 0.7);
+}
+
+.large .word {
+  font-size: clamp(1.5rem, 2.3vw, 2.2rem);
+  letter-spacing: -0.025em;
+}
+
+
+@media (max-width: 560px) {
+  .large {
+    gap: 12px;
+  }
+  .large .mark {
+    width: 52px;
+    height: 52px;
+  }
+  .large .word {
+    font-size: 1.35rem;
+  }
+}

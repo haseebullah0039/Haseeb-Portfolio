@@ -1,0 +1,138 @@
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.grid > li {
+  display: flex;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  padding: 40px 30px 34px;
+  text-align: center;
+  border-radius: var(--r-xl);
+}
+
+.primary {
+  border-color: rgba(255, 122, 24, 0.35);
+  background:
+    radial-gradient(circle at 50% 0%, rgba(255, 122, 24, 0.16), transparent 60%),
+    var(--surface);
+  box-shadow: var(--glow);
+}
+
+.tag {
+  position: absolute !important;
+  top: 18px;
+  right: 18px;
+}
+
+.ring {
+  position: relative;
+  width: 150px;
+  height: 150px;
+}
+
+.ring svg {
+  width: 100%;
+  height: 100%;
+  transform: rotate(-90deg);
+}
+
+.track {
+  fill: none;
+  stroke: rgba(255, 255, 255, 0.07);
+  stroke-width: 8;
+}
+
+.progress {
+  fill: none;
+  stroke-width: 8;
+  stroke-linecap: round;
+  filter: drop-shadow(0 0 8px rgba(255, 122, 24, 0.5));
+}
+
+.ringValue {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  font-family: var(--font-display);
+  font-size: 2.3rem;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+}
+
+.ringValue small {
+  font-size: 1rem;
+  color: var(--accent);
+  margin-left: 2px;
+}
+
+.ringValue {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.body {
+  width: 100%;
+  margin-top: 26px;
+}
+
+.label {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 1.2rem;
+}
+
+.label svg {
+  color: var(--accent);
+}
+
+.desc {
+  margin-top: 8px;
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+.bar {
+  height: 6px;
+  margin-top: 22px;
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.07);
+  overflow: hidden;
+}
+
+.fill {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, var(--accent-2), var(--accent-3));
+  transform-origin: left center;
+}
+
+.note {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 28px;
+  font-size: 0.82rem;
+  color: var(--dim);
+  text-align: center;
+}
+
+@media (max-width: 900px) {
+  .grid {
+    grid-template-columns: 1fr;
+    max-width: 480px;
+    margin-inline: auto;
+  }
+}
