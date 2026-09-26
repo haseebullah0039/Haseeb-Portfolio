@@ -7,6 +7,7 @@ import { Background } from "@/components/layout/Background";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { Providers } from "@/components/layout/Providers";
+import { WhatsAppButton } from "@/components/layout/WhatsAppButton";
 
 // Variable fonts: one file per family covers every weight used (400–800).
 const sora = Sora({
@@ -89,6 +90,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             {children}
           </main>
           <Footer />
+          <WhatsAppButton />
         </Providers>
       </body>
     </html>

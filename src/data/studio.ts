@@ -1,13 +1,15 @@
 /**
- * Hasibullah Studio — the studio founded by Haseebullah.
+ * Hesodevix Studio — the studio founded by Haseebullah.
  */
 
 export const studio = {
-  name: "Hasibullah Studio",
+  name: "Hesodevix Studio",
   founder: "Haseebullah",
   monogram: "HS",
+  /** Studio logo (white background — shown on a white plate). */
+  logo: "/images/brand/hesodevix-studio-logo.png",
   intro:
-    "Hasibullah Studio is the professional studio I founded to bring software, marketing and design together under one roof. It is where my personal expertise becomes complete digital solutions for businesses — planned, built, branded and promoted with the same level of care.",
+    "Hesodevix Studio is the professional studio I founded to bring software, marketing and design together under one roof. It is where my personal expertise becomes complete digital solutions for businesses — planned, built, branded and promoted with the same level of care.",
   areas: [
     {
       title: "Software Development",
@@ -36,6 +38,7 @@ export const studio = {
     "Brand-consistent visuals",
     "Launch & promotion support",
   ],
-  /** [ADD STUDIO WEBSITE URL] — while empty, the CTA links to the contact page. */
-  url: "",
+  /** Studio website — the "Explore" button opens it in a new tab. */
+  url: "https://hesodevixstudio.com",
+  domain: "hesodevixstudio.com",
 };

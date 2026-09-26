@@ -10,7 +10,7 @@ import { breadcrumbJsonLd, pageMetadata, personJsonLd } from "@/lib/seo";
 export const metadata = pageMetadata({
   title: "About",
   description:
-    "About Haseebullah — a Software Developer with 3+ years of experience in web, app, desktop and custom software development, plus digital marketing and graphic design. Founder of Hasibullah Studio.",
+    "About Haseebullah — a Software Developer with 3+ years of experience in web, app, desktop and custom software development, plus digital marketing and graphic design. Founder of Hesodevix Studio.",
   path: "/about",
 });
 

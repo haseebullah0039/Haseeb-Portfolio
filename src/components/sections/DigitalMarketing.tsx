@@ -5,6 +5,7 @@ import { Reveal } from "@/components/ui/Reveal";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { TiltCard } from "@/components/ui/TiltCard";
 import styles from "./DigitalMarketing.module.css";
+import { CONTACT_HREF } from "@/lib/contact";
 
 export function DigitalMarketing() {
   return (
@@ -63,7 +64,7 @@ export function DigitalMarketing() {
               and transparent reporting.
             </p>
             <div className={styles.cta}>
-              <Button href="/contact?service=marketing" variant="secondary" arrow>
+              <Button href={CONTACT_HREF} service="marketing" variant="secondary" arrow>
                 Discuss Marketing
               </Button>
             </div>

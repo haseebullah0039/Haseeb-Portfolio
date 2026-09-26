@@ -5,6 +5,7 @@ import { Reveal } from "@/components/ui/Reveal";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { TiltCard } from "@/components/ui/TiltCard";
 import styles from "./SoftwareDevelopment.module.css";
+import { CONTACT_HREF } from "@/lib/contact";
 
 export function SoftwareDevelopment() {
   return (
@@ -31,7 +32,7 @@ export function SoftwareDevelopment() {
               </p>
               <p className={styles.ok}>✓ web · apps · desktop · custom software</p>
             </div>
-            <Button href="/contact?service=software" arrow>
+            <Button href={CONTACT_HREF} service="software" arrow>
               Start a Software Project
             </Button>
           </Reveal>

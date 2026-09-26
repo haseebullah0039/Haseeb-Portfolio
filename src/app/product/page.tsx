@@ -12,11 +12,12 @@ import { SectionHeading } from "@/components/ui/SectionHeading";
 import { TiltCard } from "@/components/ui/TiltCard";
 import { breadcrumbJsonLd, pageMetadata } from "@/lib/seo";
 import styles from "./product.module.css";
+import { CONTACT_HREF } from "@/lib/contact";
 
 export const metadata = pageMetadata({
-  title: "Universal Business Management Software",
+  title: "Businexa Khata — Universal Business Management Software",
   description:
-    "Universal Business Management Software by Haseebullah — a ready-made business management system designed to support retail, shops, schools, clinics, hospitals, gyms and other businesses.",
+    "Businexa Khata by Haseebullah — a ready-made universal business management software designed to support retail, shops, schools, clinics, hospitals, gyms and other businesses.",
   path: "/product",
 });
 
@@ -24,7 +25,10 @@ const productJsonLd = {
   "@context": "https://schema.org",
   "@type": "SoftwareApplication",
   name: product.name,
+  alternateName: product.category,
   applicationCategory: "BusinessApplication",
+  operatingSystem: "Web",
+  installUrl: product.appUrl,
   description: product.description,
   url: `${site.url}/product`,
   author: { "@id": `${site.url}/#person` },
@@ -44,20 +48,20 @@ export default function ProductPage() {
         ]}
       />
       <PageHero
-        eyebrow={product.eyebrow}
+        eyebrow={product.category}
         crumbs={[{ label: "Home", href: "/" }, { label: "Product" }]}
         title={
           <>
-            Universal Business <span className="gradient-text">Management</span> Software
+            {product.nameParts[0]} <span className="gradient-text">{product.nameParts[1]}</span>
           </>
         }
         description={product.description}
       >
-        <Button href="/contact?service=software" arrow magnetic>
-          Discuss This Product
+        <Button href={product.appUrl} external arrow magnetic>
+          Open {product.name}
         </Button>
-        <Button href="/portfolio" variant="secondary">
-          View Portfolio
+        <Button href={CONTACT_HREF} service="software" variant="outline">
+          Discuss This Product
         </Button>
       </PageHero>
 

@@ -93,9 +93,56 @@
   font-weight: 700;
 }
 
+/* White brand plate for the studio logo (the logo artwork has a white background) */
+.plate {
+  position: relative;
+  width: 68%;
+  aspect-ratio: 1;
+  border-radius: 28px;
+  overflow: hidden;
+  background: #fff;
+  box-shadow:
+    0 30px 60px -24px rgba(0, 0, 0, 0.75),
+    0 0 0 6px rgba(255, 255, 255, 0.06),
+    0 0 60px -20px rgba(255, 122, 24, 0.55);
+  transition: transform 0.6s var(--ease-out);
+}
+
+.logoCard:hover .plate {
+  transform: translateY(-4px) scale(1.02);
+}
+
+.plateImg {
+  object-fit: contain;
+  transform: scale(1.12);
+}
+
+.domain {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 10px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: var(--accent-3);
+  background: var(--accent-soft);
+  border: 1px solid rgba(255, 122, 24, 0.25);
+  transition:
+    color 0.25s ease,
+    border-color 0.25s ease;
+}
+
+.domain:hover {
+  color: #fff;
+  border-color: var(--accent);
+}
+
 .logoSub {
   position: relative;
-  margin-top: 4px;
+  margin-top: 18px;
   font-family: var(--font-mono);
   font-size: 0.76rem;
   color: var(--muted);

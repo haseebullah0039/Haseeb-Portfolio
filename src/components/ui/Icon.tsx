@@ -63,7 +63,7 @@ import {
   SiNodedotjs,
   SiReact,
 } from "react-icons/si";
-import { FaBehance, FaGithub, FaLinkedinIn } from "react-icons/fa6";
+import { FaBehance, FaGithub, FaLinkedinIn, FaWhatsapp } from "react-icons/fa6";
 
 /**
  * Central icon registry. Data files reference icons by these string keys so
@@ -138,6 +138,7 @@ const icons: Record<string, IconType> = {
   linkedin: FaLinkedinIn,
   github: FaGithub,
   behance: FaBehance,
+  whatsapp: FaWhatsapp,
   email: LuMail,
 };
 

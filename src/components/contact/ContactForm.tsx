@@ -4,6 +4,7 @@ import { useEffect, useId, useState, type ChangeEvent, type FormEvent } from "re
 import { contact, site } from "@/data/site";
 import { contactServiceOptions } from "@/data/services";
 import { Icon } from "@/components/ui/Icon";
+import { CONTACT_SERVICE_EVENT, takeRememberedContactService } from "@/lib/contact";
 import styles from "./ContactForm.module.css";
 
 type Fields = { name: string; email: string; phone: string; service: string; message: string; company: string };
@@ -34,12 +35,23 @@ export function ContactForm() {
   const [touched, setTouched] = useState<Partial<Record<keyof Fields, boolean>>>({});
   const [status, setStatus] = useState<Status>({ type: "idle" });
 
-  // Preselect the service from ?service=software|marketing|design|other
+  // Pre-select the service chosen by the button that brought the visitor here:
+  // a click on this page (event), a click on another page (sessionStorage),
+  // or an old-style ?service= link.
   useEffect(() => {
-    const param = new URLSearchParams(window.location.search).get("service");
-    if (param && contactServiceOptions.some((o) => o.value === param)) {
-      setFields((f) => ({ ...f, service: param }));
-    }
+    const select = (value: string | null | undefined) => {
+      if (value && contactServiceOptions.some((o) => o.value === value)) {
+        setFields((f) => ({ ...f, service: value }));
+      }
+    };
+    select(takeRememberedContactService() ?? new URLSearchParams(window.location.search).get("service"));
+
+    const onSelect = (e: Event) => {
+      takeRememberedContactService(); // handled here; don’t re-apply on a later reload
+      select((e as CustomEvent<string>).detail);
+    };
+    window.addEventListener(CONTACT_SERVICE_EVENT, onSelect);
+    return () => window.removeEventListener(CONTACT_SERVICE_EVENT, onSelect);
   }, []);
 
   const onChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {

@@ -2,6 +2,7 @@ import { site } from "@/data/site";
 import { Button } from "@/components/ui/Button";
 import { Reveal } from "@/components/ui/Reveal";
 import styles from "./CtaBanner.module.css";
+import { CONTACT_HREF } from "@/lib/contact";
 
 export function CtaBanner() {
   return (
@@ -20,7 +21,7 @@ export function CtaBanner() {
             design — tell me what you need and I&apos;ll help you plan the right solution.
           </p>
           <div className={styles.actions}>
-            <Button href="/contact" arrow magnetic>
+            <Button href={CONTACT_HREF} arrow magnetic>
               Start a Project
             </Button>
             <Button href="/#portfolio" variant="secondary">

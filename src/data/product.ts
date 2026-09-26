@@ -1,17 +1,22 @@
 /**
- * Universal Business Management Software — flagship product content.
+ * Businexa Khata — universal business management software (flagship product).
  *
  * Only the concept and business types are confirmed. Module and technology
  * entries marked [ADD ...] are placeholders: replace them with the real details.
  */
 
 export const product = {
-  name: "Universal Business Management Software",
-  shortName: "Universal BMS",
+  name: "Businexa Khata",
+  /** Name split for two-tone headings: "Businexa" + accent "Khata". */
+  nameParts: ["Businexa", "Khata"] as const,
+  shortName: "Businexa Khata",
+  category: "Universal Business Management Software",
   eyebrow: "Flagship Product",
   tagline: "One ready-made system, adaptable to many kinds of business.",
   description:
-    "A ready-made business management software designed to support different types of businesses. Instead of building a new system from scratch for every organisation, it provides a single, adaptable foundation for managing day-to-day business operations.",
+    "Businexa Khata is a ready-made universal business management software designed to support different types of businesses. Instead of building a new system from scratch for every organisation, it provides a single, adaptable foundation for managing day-to-day business operations.",
+  /** Live web app (login page). Update this if the app moves to its own domain. */
+  appUrl: "https://mediumspringgreen-monkey-383081.hostingersite.com/login",
 
   /** Business environments the software is designed for. */
   businessTypes: [

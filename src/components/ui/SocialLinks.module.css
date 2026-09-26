@@ -5,6 +5,7 @@
 }
 
 .link {
+  position: relative;
   display: grid;
   place-items: center;
   width: 44px;
@@ -41,4 +42,60 @@ a.link:hover {
 
 .square .link {
   border-radius: 10px;
+}
+
+/* Name label shown above the icon on hover / keyboard focus */
+.link::after,
+.link::before {
+  position: absolute;
+  left: 50%;
+  pointer-events: none;
+  opacity: 0;
+  transition:
+    opacity 0.2s ease,
+    transform 0.25s var(--ease-out);
+}
+
+.link::after {
+  content: attr(data-label);
+  bottom: calc(100% + 10px);
+  transform: translate(-50%, 4px);
+  padding: 5px 10px;
+  border-radius: 8px;
+  font-family: var(--font-display);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  line-height: 1.2;
+  white-space: nowrap;
+  color: #fff;
+  background: #1a0c1f;
+  border: 1px solid var(--accent-line);
+  box-shadow: 0 8px 20px -8px rgba(0, 0, 0, 0.8);
+  z-index: 5;
+}
+
+/* Small pointer under the label */
+.link::before {
+  content: "";
+  bottom: calc(100% + 5px);
+  width: 8px;
+  height: 8px;
+  transform: translate(-50%, 4px) rotate(45deg);
+  background: #1a0c1f;
+  border-right: 1px solid var(--accent-line);
+  border-bottom: 1px solid var(--accent-line);
+  z-index: 6;
+}
+
+.link:hover::after,
+.link:focus-visible::after {
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
+
+.link:hover::before,
+.link:focus-visible::before {
+  opacity: 1;
+  transform: translate(-50%, 0) rotate(45deg);
 }

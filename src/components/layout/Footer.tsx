@@ -5,6 +5,7 @@ import { SocialLinks } from "@/components/ui/SocialLinks";
 import { Icon } from "@/components/ui/Icon";
 import { Logo } from "./Logo";
 import styles from "./Footer.module.css";
+import { CONTACT_HREF } from "@/lib/contact";
 
 export function Footer() {
   return (
@@ -53,7 +54,7 @@ export function Footer() {
             <Icon name="mail" size={16} />
             {contact.email}
           </a>
-          <Link href="/contact" className={`btn btn-secondary btn-sm ${styles.footerCta}`}>
+          <Link href={CONTACT_HREF} className={`btn btn-secondary btn-sm ${styles.footerCta}`}>
             Start a Project
             <Icon name="arrowUpRight" size={16} className="btn-arrow" />
           </Link>

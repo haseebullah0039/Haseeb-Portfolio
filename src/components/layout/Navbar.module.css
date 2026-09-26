@@ -18,23 +18,31 @@
   transition: box-shadow 0.35s ease;
 }
 
-/* Orange line along the bottom edge (fades out at the far ends) */
+/* Bottom line — white track (the orange scroll fill sits on top of it) */
 .header::after {
   content: "";
   position: absolute;
   left: 0;
   right: 0;
   bottom: 0;
-  height: 2px;
-  background: linear-gradient(
-    90deg,
-    rgba(249, 115, 22, 0.15) 0%,
-    rgba(249, 115, 22, 0.9) 18%,
-    rgba(255, 122, 24, 1) 50%,
-    rgba(249, 115, 22, 0.9) 82%,
-    rgba(249, 115, 22, 0.15) 100%
-  );
-  box-shadow: 0 0 12px rgba(255, 122, 24, 0.45);
+  height: 3px;
+  background: rgba(255, 255, 255, 0.9);
+  pointer-events: none;
+}
+
+/* Orange fill that grows left → right with scroll position (transform only) */
+.progress {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+  height: 3px;
+  background: linear-gradient(90deg, #f97316 0%, #ff7a18 60%, #ffa45c 100%);
+  box-shadow: 0 0 12px rgba(255, 122, 24, 0.6);
+  transform: scaleX(0);
+  transform-origin: left center;
+  will-change: transform;
   pointer-events: none;
 }
 

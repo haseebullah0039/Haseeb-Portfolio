@@ -10,6 +10,7 @@ import { Icon } from "@/components/ui/Icon";
 import { SocialLinks } from "@/components/ui/SocialLinks";
 import { Logo } from "./Logo";
 import styles from "./Navbar.module.css";
+import { CONTACT_HREF } from "@/lib/contact";
 
 /** Homepage sections without their own nav link, mapped to the closest nav item. */
 const sectionAlias: Record<string, string> = {
@@ -41,14 +42,33 @@ export function Navbar() {
   const [active, setActive] = useState<string>("home");
   const menuRef = useRef<HTMLDivElement>(null);
   const toggleRef = useRef<HTMLButtonElement>(null);
+  const progressRef = useRef<HTMLSpanElement>(null);
 
-  // Glass state after scrolling
+  // Compact state after scrolling + orange scroll-progress fill on the bottom line.
+  // The fill is written straight to the element's transform (once per frame),
+  // so scrolling never re-renders the navbar.
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 24);
-    onScroll();
+    let frame = 0;
+    const update = () => {
+      frame = 0;
+      const y = window.scrollY;
+      setScrolled(y > 24);
+      const max = document.documentElement.scrollHeight - window.innerHeight;
+      const progress = max > 0 ? Math.min(1, Math.max(0, y / max)) : 0;
+      if (progressRef.current) progressRef.current.style.transform = `scaleX(${progress})`;
+    };
+    const onScroll = () => {
+      if (!frame) frame = requestAnimationFrame(update);
+    };
+    update();
     window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
+    window.addEventListener("resize", onScroll);
+    return () => {
+      cancelAnimationFrame(frame);
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+    };
+  }, [pathname]);
 
   // Active link: route-based on inner pages, scroll-spy on the homepage
   useEffect(() => {
@@ -139,7 +159,7 @@ export function Navbar() {
         </ul>
 
         <div className={styles.actions}>
-          <Link href="/contact" className={styles.cta}>
+          <Link href={CONTACT_HREF} className={styles.cta}>
             Start a Project
           </Link>
           <button
@@ -159,6 +179,9 @@ export function Navbar() {
           </button>
         </div>
       </nav>
+
+      {/* Bottom line: white track that fills with orange as the page scrolls */}
+      <span ref={progressRef} className={styles.progress} aria-hidden="true" />
 
       <AnimatePresence>
         {open && (
@@ -200,7 +223,7 @@ export function Navbar() {
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.45 }}
               >
-                <Link href="/contact" className="btn btn-primary" onClick={() => setOpen(false)}>
+                <Link href={CONTACT_HREF} className="btn btn-primary" onClick={() => setOpen(false)}>
                   Start a Project
                   <Icon name="arrowUpRight" size={18} className="btn-arrow" />
                 </Link>

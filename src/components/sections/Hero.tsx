@@ -7,6 +7,7 @@ import { Counter } from "@/components/ui/Counter";
 import { SocialLinks } from "@/components/ui/SocialLinks";
 import { TypewriterTitle } from "./TypewriterTitle";
 import styles from "./Hero.module.css";
+import { CONTACT_HREF } from "@/lib/contact";
 
 /** Every figure is factual and derived from site data. */
 const stats = [
@@ -50,14 +51,14 @@ export function Hero() {
           </p>
 
           <div className={styles.fade} style={delay(0.38)}>
-            <SocialLinks size="sm" square />
+            <SocialLinks size="sm" square exclude={["email"]} />
           </div>
 
           <div className={`${styles.actions} ${styles.fade}`} style={delay(0.46)}>
             <Button href="/#portfolio" arrow>
               View My Work
             </Button>
-            <Button href="/contact" variant="outline">
+            <Button href={CONTACT_HREF} variant="outline">
               Start a Project
             </Button>
           </div>

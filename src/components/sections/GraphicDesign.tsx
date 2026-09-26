@@ -5,6 +5,7 @@ import { Reveal } from "@/components/ui/Reveal";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { TiltCard } from "@/components/ui/TiltCard";
 import styles from "./GraphicDesign.module.css";
+import { CONTACT_HREF } from "@/lib/contact";
 
 /** Decorative specimens for the larger bento tiles. */
 function LogoSpecimen() {
@@ -122,7 +123,7 @@ export function GraphicDesign() {
         </ul>
 
         <Reveal className={styles.cta}>
-          <Button href="/contact?service=design" variant="secondary" arrow>
+          <Button href={CONTACT_HREF} service="design" variant="secondary" arrow>
             Discuss a Design Project
           </Button>
         </Reveal>

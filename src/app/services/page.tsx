@@ -7,6 +7,7 @@ import { DigitalMarketing } from "@/components/sections/DigitalMarketing";
 import { GraphicDesign } from "@/components/sections/GraphicDesign";
 import { CtaBanner } from "@/components/sections/CtaBanner";
 import { breadcrumbJsonLd, pageMetadata } from "@/lib/seo";
+import { CONTACT_HREF } from "@/lib/contact";
 
 export const metadata = pageMetadata({
   title: "Services",
@@ -34,7 +35,7 @@ export default function ServicesPage() {
         }
         description="Development of websites, applications and custom business software — with digital marketing and graphic design to launch, brand and grow what gets built."
       >
-        <Button href="/contact" arrow>
+        <Button href={CONTACT_HREF} arrow>
           Start a Project
         </Button>
         <Button href="/portfolio" variant="secondary">

@@ -69,6 +69,8 @@ export const contact = {
   phoneHref: "tel:+923461365547",
   email: "Hasibullah0039@gmail.com",
   emailHref: "mailto:Hasibullah0039@gmail.com",
+  /** Floating WhatsApp chat button (bottom-right on every page). */
+  whatsappUrl: "https://wa.me/923461365547",
   address: {
     lines: ["Tahana Batela", "District Malakand", "Khyber Pakhtunkhwa", "Pakistan"],
     postalCode: "23000",
@@ -83,9 +85,9 @@ export type SocialLink = {
 };
 
 export const socials: SocialLink[] = [
-  { id: "linkedin", label: "LinkedIn", url: "" }, // [ADD LINKEDIN PROFILE URL]
-  { id: "github", label: "GitHub", url: "" }, // [ADD GITHUB PROFILE URL]
-  { id: "behance", label: "Behance", url: "" }, // [ADD BEHANCE PROFILE URL]
+  { id: "linkedin", label: "LinkedIn", url: "https://www.linkedin.com/in/haseebullahpro/" },
+  { id: "github", label: "GitHub", url: "https://github.com/haseebullah0039" },
+  { id: "behance", label: "Behance", url: "https://www.behance.net/haseebullahdesigns/" },
   { id: "email", label: "Email", url: contact.emailHref },
 ];
 
@@ -94,15 +96,15 @@ export type NavLink = { label: string; href: string; section?: string };
 export const navLinks: NavLink[] = [
   { label: "About", href: "/#about", section: "about" },
   { label: "Services", href: "/#services", section: "services" },
-  { label: "Portfolio", href: "/#portfolio", section: "portfolio" },
   { label: "Product", href: "/#product", section: "product" },
+  { label: "Portfolio", href: "/#portfolio", section: "portfolio" },
 ];
 
 export const footerLinks: NavLink[] = [
   { label: "Services", href: "/services" },
   { label: "Portfolio", href: "/portfolio" },
   { label: "Product", href: "/product" },
-  { label: "Hasibullah Studio", href: "/#studio" },
+  { label: "Hesodevix Studio", href: "/#studio" },
   { label: "About", href: "/about" },
-  { label: "Contact", href: "/contact" },
+  { label: "Contact", href: "/#contact" },
 ];

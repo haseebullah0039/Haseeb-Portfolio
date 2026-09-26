@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { contact, site, socials } from "@/data/site";
+import { studio } from "@/data/studio";
 
 /** Page-level metadata with canonical URL and matching Open Graph / X tags. */
 export function pageMetadata({
@@ -41,6 +42,14 @@ export const personJsonLd = {
   name: site.name,
   url: site.url,
   jobTitle: "Software Developer",
+  // Founder of the studio (Organization with this person as founder).
+  worksFor: {
+    "@type": "Organization",
+    name: studio.name,
+    founder: { "@id": `${site.url}/#person` },
+    ...(studio.url ? { url: studio.url } : {}),
+    ...(studio.logo ? { logo: new URL(studio.logo, site.url).toString() } : {}),
+  },
   ...(site.profileImage ? { image: new URL(site.profileImage, site.url).toString() } : {}),
   description: site.seo.description,
   email: `mailto:${contact.email}`,

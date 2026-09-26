@@ -19,8 +19,9 @@ export function ProductShowcase() {
             </Reveal>
             <Reveal delay={0.05}>
               <h2 id="product-title" className={styles.title}>
-                Universal Business <span className="gradient-text">Management</span> Software
+                {product.nameParts[0]} <span className="gradient-text">{product.nameParts[1]}</span>
               </h2>
+              <p className={styles.category}>{product.category}</p>
             </Reveal>
             <Reveal delay={0.1}>
               <p className={styles.tagline}>{product.tagline}</p>
@@ -43,8 +44,8 @@ export function ProductShowcase() {
               <Button href="/product" arrow magnetic>
                 Explore Product
               </Button>
-              <Button href="/contact?service=software" variant="secondary">
-                Discuss Your Business
+              <Button href={product.appUrl} variant="outline" external arrow>
+                Open {product.name}
               </Button>
             </Reveal>
           </div>

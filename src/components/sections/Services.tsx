@@ -5,6 +5,7 @@ import { Reveal } from "@/components/ui/Reveal";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { TiltCard } from "@/components/ui/TiltCard";
 import styles from "./Services.module.css";
+import { CONTACT_HREF } from "@/lib/contact";
 
 export function Services({ index = "07" }: { index?: string }) {
   return (
@@ -56,7 +57,8 @@ export function Services({ index = "07" }: { index?: string }) {
                 </ul>
                 <div className={styles.cta}>
                   <Button
-                    href={`/contact?service=${c.id}`}
+                    href={CONTACT_HREF}
+                    service={c.id}
                     variant={c.featured ? "primary" : "secondary"}
                     size="sm"
                     arrow

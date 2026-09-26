@@ -12,6 +12,8 @@
  * projects (or delete them). They show a "Sample" badge on the site.
  */
 
+import { product } from "./product";
+
 export type ProjectCategory =
   | "Software Development"
   | "Web Development"
@@ -67,16 +69,17 @@ export type Project = {
 
 export const projects: Project[] = [
   {
-    id: "universal-business-management-software",
-    title: "Universal Business Management Software",
+    id: "businexa-khata",
+    title: "Businexa Khata",
     category: "Business Software",
     categories: ["Software Development", "Business Software"],
     description:
-      "A ready-made business management software designed to support different types of businesses — from retail and shops to schools, clinics, hospitals and gyms.",
+      "Universal business management software — a ready-made system designed to support different types of businesses, from retail and shops to schools, clinics, hospitals and gyms.",
     cover: "dashboard",
     technologies: [], // [ADD TECH STACK] e.g. "Electron.js", "React", "MySQL"
     caseStudyUrl: "/product",
-    privateProject: true, // Verify: set to false and add links if the source is public.
+    liveUrl: product.appUrl,
+    privateProject: true, // Source code is private; the live app is linked via liveUrl.
     featured: true,
   },
   {

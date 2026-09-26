@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { site } from "@/data/site";
 import { studio } from "@/data/studio";
 import { Button } from "@/components/ui/Button";
@@ -5,6 +6,7 @@ import { Icon } from "@/components/ui/Icon";
 import { Reveal } from "@/components/ui/Reveal";
 import { TiltCard } from "@/components/ui/TiltCard";
 import styles from "./Studio.module.css";
+import { CONTACT_HREF } from "@/lib/contact";
 
 export function Studio() {
   const hasUrl = Boolean(studio.url);
@@ -17,11 +19,37 @@ export function Studio() {
               <span />
               <span />
             </div>
-            <div className={styles.logo} aria-hidden="true">
-              {studio.monogram}
-            </div>
-            <p className={styles.logoName}>{studio.name}</p>
+            {studio.logo ? (
+              <div className={styles.plate}>
+                <Image
+                  src={studio.logo}
+                  alt={`${studio.name} logo`}
+                  fill
+                  sizes="(max-width: 1024px) 60vw, 300px"
+                  className={styles.plateImg}
+                />
+              </div>
+            ) : (
+              <>
+                <div className={styles.logo} aria-hidden="true">
+                  {studio.monogram}
+                </div>
+                <p className={styles.logoName}>{studio.name}</p>
+              </>
+            )}
             <p className={styles.logoSub}>Founded by {site.name}</p>
+            {hasUrl && (
+              <a
+                href={studio.url}
+                className={styles.domain}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`Visit ${studio.name} website (opens in a new tab)`}
+              >
+                {studio.domain}
+                <Icon name="arrowUpRight" size={14} />
+              </a>
+            )}
           </TiltCard>
         </Reveal>
 
@@ -68,7 +96,7 @@ export function Studio() {
           </Reveal>
 
           <Reveal delay={0.2} className={styles.actions}>
-            <Button href={hasUrl ? studio.url : "/contact"} external={hasUrl} arrow magnetic>
+            <Button href={hasUrl ? studio.url : CONTACT_HREF} external={hasUrl} arrow magnetic>
               Explore {studio.name}
             </Button>
           </Reveal>

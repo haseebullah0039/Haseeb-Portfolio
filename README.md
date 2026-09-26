@@ -24,8 +24,8 @@ All content lives in `src/data/`. You never need to touch a component to update 
 | `services.ts` | Software, marketing and design services, service categories, contact-form options |
 | `technologies.ts` | Tech stack and the self-reported expertise percentages |
 | `projects.ts` | Portfolio projects (homepage featured + `/portfolio`) |
-| `product.ts` | Universal Business Management Software (`/product`) |
-| `studio.ts` | Hasibullah Studio section |
+| `product.ts` | Businexa Khata — universal business management software (`/product`), incl. live app link |
+| `studio.ts` | Hesodevix Studio section (name, intro, website, logo) |
 | `testimonials.ts` | Testimonials |
 
 ### Placeholders to replace
@@ -36,9 +36,8 @@ Missing information was left as clearly marked placeholders instead of being mad
 - **Social links**: add your LinkedIn, GitHub and Behance URLs in `site.ts` → `socials`. Empty ones show as dimmed "coming soon" icons.
 - **Projects**: every entry with `placeholder: true` in `projects.ts` is a sample slot and shows a "Sample" badge on the site. Replace it with a real project or delete it.
 - **Product**: `product.ts` → `modules`, `technologies`, `screenshots`. Modules show as `[ADD MODULE NAME]` until you fill them in. The tech and screenshot sections stay hidden while they are empty.
-- **Universal BMS privacy**: `projects.ts` marks it `privateProject: true`. Set it to `false` and add links if the code or demo is public.
+- **Businexa Khata app link**: `product.ts` → `appUrl`. Update it if the app moves to its own domain.
 - **Testimonials**: all three are placeholders. Replace them with real client feedback and set `placeholder: false`.
-- **Studio website**: `studio.ts` → `url`. While empty, "Explore Hasibullah Studio" links to the contact page.
 
 ### Adding a project
 
