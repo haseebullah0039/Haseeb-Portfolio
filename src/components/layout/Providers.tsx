@@ -1,5 +1,6 @@
 "use client";
 
+import { usePathname } from "next/navigation";
 import { LazyMotion, MotionConfig } from "motion/react";
 import { useEffect, type ReactNode } from "react";
 import { rememberContactService } from "@/lib/contact";
@@ -16,6 +17,24 @@ const loadFeatures = () => import("@/lib/motionFeatures").then((mod) => mod.defa
  * - Homepage section links scroll smoothly and precisely to their section.
  */
 export function Providers({ children }: { children: ReactNode }) {
+  const pathname = usePathname();
+
+  // Arriving on the homepage with "#section" (e.g. a Back button on another page):
+  // land exactly on that section. Off-screen sections only have estimated heights
+  // until rendered, so the browser's own jump can miss.
+  useEffect(() => {
+    if (pathname !== "/" || !window.location.hash) return;
+    const id = decodeURIComponent(window.location.hash.slice(1));
+    const frame = requestAnimationFrame(() => scrollToSection(id, { instant: true }));
+    // On a fresh page load the browser jumps to the hash again once loading finishes.
+    const settle = () => scrollToSection(id, { instant: true });
+    if (document.readyState !== "complete") window.addEventListener("load", settle, { once: true });
+    return () => {
+      cancelAnimationFrame(frame);
+      window.removeEventListener("load", settle);
+    };
+  }, [pathname]);
+
   useEffect(() => {
     const onClick = (e: MouseEvent) => {
       const link = (e.target as Element | null)?.closest<HTMLAnchorElement>("a[href]");

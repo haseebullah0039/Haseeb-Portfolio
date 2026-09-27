@@ -15,8 +15,73 @@ const initial: Fields = { name: "", email: "", phone: "", service: "", message: 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 const PHONE_RE = /^[+()\-\s\d]{7,20}$/;
 
-/** Optional JSON endpoint (e.g. Formspree). Without it, the form opens the visitor's email client. */
-const ENDPOINT = process.env.NEXT_PUBLIC_FORM_ENDPOINT;
+/**
+ * Delivery chain — the visitor never hits a dead end:
+ *  1. /api/contact  → sends from your Gmail to contact.formEmail (needs GMAIL_* env vars)
+ *  2. FormSubmit    → used if Gmail isn't configured (works once its email is activated)
+ *  3. Email app     → opens the visitor's mail app with the message pre-filled
+ * NEXT_PUBLIC_FORM_ENDPOINT can replace step 2 with another JSON endpoint (e.g. Formspree).
+ */
+const FALLBACK_ENDPOINT =
+  process.env.NEXT_PUBLIC_FORM_ENDPOINT || `https://formsubmit.co/ajax/${contact.formEmail}`;
+
+type Payload = { name: string; email: string; phone: string; service: string; message: string; company: string };
+
+/** Returns "sent", "rejected" (with a message to show), or "unavailable" (try the next method). */
+async function sendViaApi(payload: Payload): Promise<{ result: "sent" | "rejected" | "unavailable"; error?: string }> {
+  try {
+    const res = await fetch("/api/contact", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload),
+    });
+    const data = (await res.json().catch(() => ({}))) as { ok?: boolean; error?: string };
+    if (res.ok && data.ok) return { result: "sent" };
+    if (res.status === 400 || res.status === 429) return { result: "rejected", error: data.error };
+    return { result: "unavailable" }; // 503 not configured, 502 Gmail error, 404 static host…
+  } catch {
+    return { result: "unavailable" };
+  }
+}
+
+async function sendViaFallback(payload: Payload): Promise<boolean> {
+  try {
+    const res = await fetch(FALLBACK_ENDPOINT, {
+      method: "POST",
+      headers: { "Content-Type": "application/json", Accept: "application/json" },
+      body: JSON.stringify({
+        name: payload.name,
+        email: payload.email,
+        phone: payload.phone || "Not provided",
+        service: payload.service,
+        message: payload.message,
+        _subject: `New ${payload.service} enquiry from ${payload.name} — ${site.domain}`,
+        _replyto: payload.email,
+        _template: "table",
+        _captcha: "false",
+      }),
+    });
+    const data = (await res.json().catch(() => ({}))) as { success?: string | boolean };
+    return res.ok && String(data.success) !== "false";
+  } catch {
+    return false;
+  }
+}
+
+function openEmailApp(payload: Payload) {
+  const subject = `${payload.service} enquiry from ${payload.name}`;
+  const body = [
+    `Name: ${payload.name}`,
+    `Email: ${payload.email}`,
+    payload.phone ? `Phone: ${payload.phone}` : null,
+    `Service: ${payload.service}`,
+    "",
+    payload.message,
+  ]
+    .filter((l) => l !== null)
+    .join("\n");
+  window.location.href = `mailto:${contact.formEmail}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+}
 
 function validate(f: Fields): Errors {
   const e: Errors = {};
@@ -80,49 +145,35 @@ export function ContactForm() {
 
     const serviceLabel = contactServiceOptions.find((o) => o.value === fields.service)?.label ?? fields.service;
 
-    if (ENDPOINT) {
-      setStatus({ type: "sending" });
-      try {
-        const res = await fetch(ENDPOINT, {
-          method: "POST",
-          headers: { "Content-Type": "application/json", Accept: "application/json" },
-          body: JSON.stringify({
-            name: fields.name.trim(),
-            email: fields.email.trim(),
-            phone: fields.phone.trim(),
-            service: serviceLabel,
-            message: fields.message.trim(),
-          }),
-        });
-        if (!res.ok) throw new Error(String(res.status));
-        setStatus({ type: "success", message: "Thank you — your message has been sent. I'll get back to you soon." });
-        setFields(initial);
-        setTouched({});
-      } catch {
-        setStatus({
-          type: "error",
-          message: `Sorry, the message couldn't be sent. Please email me directly at ${contact.email}.`,
-        });
-      }
+    setStatus({ type: "sending" });
+    const payload: Payload = {
+      name: fields.name.trim(),
+      email: fields.email.trim(),
+      phone: fields.phone.trim(),
+      service: serviceLabel,
+      message: fields.message.trim(),
+      company: fields.company,
+    };
+
+    const done = () => {
+      setStatus({ type: "success", message: "Thank you — your message has been sent. I’ll get back to you soon." });
+      setFields(initial);
+      setTouched({});
+    };
+
+    const api = await sendViaApi(payload);
+    if (api.result === "sent") return done();
+    if (api.result === "rejected") {
+      setStatus({ type: "error", message: api.error || "Please check the form and try again." });
       return;
     }
+    if (await sendViaFallback(payload)) return done();
 
-    // Fallback: open the visitor's email client with everything pre-filled.
-    const subject = `${serviceLabel} enquiry from ${fields.name.trim()}`;
-    const body = [
-      `Name: ${fields.name.trim()}`,
-      `Email: ${fields.email.trim()}`,
-      fields.phone.trim() ? `Phone: ${fields.phone.trim()}` : null,
-      `Service: ${serviceLabel}`,
-      "",
-      fields.message.trim(),
-    ]
-      .filter((l) => l !== null)
-      .join("\n");
-    window.location.href = `mailto:${contact.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    // Last resort: hand the message to the visitor's email app, already written.
+    openEmailApp(payload);
     setStatus({
       type: "success",
-      message: `Your email app should now open with the message ready to send to ${site.name}. If it doesn't, email ${contact.email} directly.`,
+      message: `Your email app has opened with your message ready — just press Send. You can also email ${contact.formEmail} directly.`,
     });
   };
 

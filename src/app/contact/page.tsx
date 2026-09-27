@@ -20,6 +20,7 @@ export default function ContactPage() {
         ])}
       />
       <PageHero
+        back={{ href: "/#contact", label: "Back to Home" }}
         eyebrow="Contact"
         crumbs={[{ label: "Home", href: "/" }, { label: "Contact" }]}
         title={

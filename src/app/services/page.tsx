@@ -26,6 +26,7 @@ export default function ServicesPage() {
         ])}
       />
       <PageHero
+        back={{ href: "/#services", label: "Back to Home" }}
         eyebrow="Services"
         crumbs={[{ label: "Home", href: "/" }, { label: "Services" }]}
         title={

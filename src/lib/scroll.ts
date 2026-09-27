@@ -30,10 +30,10 @@ function onScrollSettled(done: () => void) {
   requestAnimationFrame(tick);
 }
 
-export function scrollToSection(id: string): boolean {
+export function scrollToSection(id: string, { instant = false }: { instant?: boolean } = {}): boolean {
   const el = document.getElementById(id);
   if (!el) return false;
-  const smooth = !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const smooth = !instant && !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   let corrections = 0;
 
   const go = (behavior: ScrollBehavior) => {

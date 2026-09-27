@@ -72,7 +72,9 @@ export const personJsonLd = {
   ],
   address: {
     "@type": "PostalAddress",
+    addressLocality: "Batkhela",
     addressRegion: "Khyber Pakhtunkhwa",
+    postalCode: contact.address.postalCode,
     addressCountry: "PK",
   },
   ...(sameAs.length ? { sameAs } : {}),

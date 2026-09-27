@@ -27,6 +27,7 @@ export default function AboutPage() {
         ]}
       />
       <PageHero
+        back={{ href: "/#about", label: "Back to Home" }}
         eyebrow="About"
         crumbs={[{ label: "Home", href: "/" }, { label: "About" }]}
         title={

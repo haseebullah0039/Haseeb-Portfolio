@@ -49,13 +49,25 @@ Missing information was left as clearly marked placeholders instead of being mad
 
 ## Contact form
 
-The form validates input on the client. By default it opens the visitor's email app with the message already filled in, addressed to `Hasibullah0039@gmail.com`.
+When a visitor clicks **Send Message**, the site emails the message to
+**haseebullah0039@gmail.com** (`contact.formEmail` in `src/data/site.ts`).
+Replying to that email replies to the visitor.
 
-To receive messages directly, create a form endpoint (e.g. [Formspree](https://formspree.io)) and set it in `.env.local`:
+It tries these in order, so a visitor never hits a dead end:
 
-```
-NEXT_PUBLIC_FORM_ENDPOINT=https://formspree.io/f/xxxxxxx
-```
+1. **Your Gmail** (`/api/contact`): sent from your own Gmail account. This is the most reliable option. **Setup (once):**
+   1. Turn on 2-Step Verification for the Google account: https://myaccount.google.com/security
+   2. Create an App Password: https://myaccount.google.com/apppasswords (name it "Portfolio").
+   3. Create `.env.local` in the project folder:
+      ```
+      GMAIL_USER=haseebullah0039@gmail.com
+      GMAIL_APP_PASSWORD=abcd efgh ijkl mnop
+      ```
+   4. When deploying (e.g. Vercel), add the same two variables under **Settings → Environment Variables** and redeploy.
+2. **FormSubmit** (backup): works once you click **Activate Form** in the email FormSubmit sends.
+3. **Visitor's email app** (last resort): opens with the message already written.
+
+The Gmail option needs a host that runs server code (Vercel, Netlify, or `npm run start`), not a purely static export.
 
 ## Voice guide
 

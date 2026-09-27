@@ -72,10 +72,15 @@ export const contact = {
   phoneHref: "tel:+923461365547",
   email: "Hasibullah0039@gmail.com",
   emailHref: "mailto:Hasibullah0039@gmail.com",
+  /**
+   * Inbox that receives contact-form submissions (via FormSubmit.co — no account needed).
+   * The first submission sends an activation email to this address; click "Activate Form" once.
+   */
+  formEmail: "haseebullah0039@gmail.com",
   /** Floating WhatsApp chat button (bottom-right on every page). */
   whatsappUrl: "https://wa.me/923461365547",
   address: {
-    lines: ["Tahana Batela", "District Malakand", "Khyber Pakhtunkhwa", "Pakistan"],
+    lines: ["Thana, Batkhela", "District Malakand", "Khyber Pakhtunkhwa", "Pakistan"],
     postalCode: "23000",
   },
 } as const;

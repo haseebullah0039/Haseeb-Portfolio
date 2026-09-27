@@ -73,7 +73,9 @@ export function Navbar() {
   // Active link: route-based on inner pages, scroll-spy on the homepage
   useEffect(() => {
     if (pathname !== "/") {
-      setActive(routeSection[pathname] ?? "");
+      // Case study pages (/portfolio/<id>) keep "Portfolio" highlighted.
+      const base = "/" + (pathname.split("/")[1] ?? "");
+      setActive(routeSection[pathname] ?? routeSection[base] ?? "");
       return;
     }
     const ids = [...(navLinks.map((l) => l.section).filter(Boolean) as string[]), ...Object.keys(sectionAlias)];

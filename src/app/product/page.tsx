@@ -48,6 +48,7 @@ export default function ProductPage() {
         ]}
       />
       <PageHero
+        back={{ href: "/#product", label: "Back to Home" }}
         eyebrow={product.category}
         crumbs={[{ label: "Home", href: "/" }, { label: "Product" }]}
         title={

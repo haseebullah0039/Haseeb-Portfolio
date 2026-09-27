@@ -21,6 +21,7 @@ export default function PortfolioPage() {
         ])}
       />
       <PageHero
+        back={{ href: "/#portfolio", label: "Back to Home" }}
         eyebrow="Portfolio"
         crumbs={[{ label: "Home", href: "/" }, { label: "Portfolio" }]}
         title={

@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next";
 import { site } from "@/data/site";
+import { projects } from "@/data/projects";
 
 const routes = [
   { path: "", priority: 1, changeFrequency: "monthly" },
@@ -12,10 +13,19 @@ const routes = [
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const lastModified = new Date();
-  return routes.map((r) => ({
+  const pages: MetadataRoute.Sitemap = routes.map((r) => ({
     url: `${site.url}${r.path}`,
     lastModified,
     changeFrequency: r.changeFrequency,
     priority: r.priority,
   }));
+  const caseStudies: MetadataRoute.Sitemap = projects
+    .filter((p) => p.caseStudy)
+    .map((p) => ({
+      url: `${site.url}/portfolio/${p.id}`,
+      lastModified,
+      changeFrequency: "yearly",
+      priority: 0.7,
+    }));
+  return [...pages, ...caseStudies];
 }
