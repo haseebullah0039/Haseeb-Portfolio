@@ -18,9 +18,10 @@
   box-shadow: var(--shadow-lg);
 }
 
+/* Matches the About photo's proportions (972×1280) so nothing is cropped. */
 .portrait {
   position: relative;
-  aspect-ratio: 4 / 4.6;
+  aspect-ratio: 972 / 1280;
   border-radius: calc(var(--r-xl) - 8px);
   overflow: hidden;
 }

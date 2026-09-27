@@ -40,6 +40,9 @@ export const site = {
    */
   profileImage: "/images/profile.webp" as string | null,
 
+  /** Photo for the About section card (workspace portrait). */
+  aboutImage: "/images/about.jpeg",
+
   /** Brand logo (circular badge) used in the navbar, footer and app icon. */
   logo: "/images/brand/logo.webp",
 

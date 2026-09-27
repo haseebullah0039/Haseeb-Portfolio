@@ -33,7 +33,7 @@ export function About() {
         <Reveal className={styles.visualCol}>
           <TiltCard className={styles.portraitCard} max={5}>
             <div className={styles.portrait}>
-              <Portrait sizes="(max-width: 1024px) 80vw, 420px" />
+              <Portrait src={site.aboutImage} sizes="(max-width: 1024px) 80vw, 420px" />
             </div>
             <div className={styles.portraitMeta}>
               <div>
