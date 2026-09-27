@@ -1,10 +1,22 @@
 /**
- * Testimonials.
+ * Client testimonials — REAL feedback only, shared with the client's permission.
  *
- * IMPORTANT: These are PLACEHOLDERS, not real client feedback.
- * Replace each entry with a real testimonial (with the client's permission)
- * and set `placeholder: false`. Add an avatar in /public/images/testimonials/
- * or leave `avatar` empty to show initials.
+ * The Testimonials section stays hidden while this list is empty and appears
+ * automatically as soon as you add the first entry (up to ~10 work well).
+ *
+ * How to add one — copy this block into the list below:
+ *
+ *   {
+ *     id: "client-name-project",           // any unique id
+ *     name: "Client Full Name",
+ *     role: "Owner, Company Name",          // role and/or company
+ *     quote: "What they said, in their own words (2–3 sentences).",
+ *     projectType: "Software Development",  // or "Digital Marketing", "Graphic Design", …
+ *     avatar: "/images/testimonials/client-name.webp", // optional — only with permission
+ *   },
+ *
+ * Photos: put them in /public/images/testimonials/ (square, ~200×200).
+ * Without a photo, a neat initials avatar is shown instead.
  */
 
 export type Testimonial = {
@@ -14,35 +26,11 @@ export type Testimonial = {
   quote: string;
   projectType?: string;
   avatar?: string;
-  placeholder?: boolean;
 };
 
 export const testimonials: Testimonial[] = [
-  {
-    id: "placeholder-1",
-    name: "[Client Name]",
-    role: "[Role, Company]",
-    quote:
-      "[ADD REAL TESTIMONIAL HERE] — Share what it was like to work together on a software project and the value it brought.",
-    projectType: "Software Development",
-    placeholder: true,
-  },
-  {
-    id: "placeholder-2",
-    name: "[Client Name]",
-    role: "[Role, Company]",
-    quote:
-      "[ADD REAL TESTIMONIAL HERE] — Feedback from a digital marketing or SEO engagement.",
-    projectType: "Digital Marketing",
-    placeholder: true,
-  },
-  {
-    id: "placeholder-3",
-    name: "[Client Name]",
-    role: "[Role, Company]",
-    quote:
-      "[ADD REAL TESTIMONIAL HERE] — Feedback from a branding or graphic design project.",
-    projectType: "Graphic Design",
-    placeholder: true,
-  },
+  // Add real testimonials here.
 ];
+
+/** True once at least one real testimonial has been added. */
+export const hasTestimonials = testimonials.length > 0;

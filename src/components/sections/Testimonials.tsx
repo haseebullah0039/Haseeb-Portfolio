@@ -4,27 +4,29 @@ import Image from "next/image";
 import { AnimatePresence } from "motion/react";
 import * as m from "motion/react-m";
 import { useState } from "react";
-import { testimonials } from "@/data/testimonials";
+import { hasTestimonials, testimonials } from "@/data/testimonials";
 import { Icon } from "@/components/ui/Icon";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import styles from "./Testimonials.module.css";
 
 function initials(name: string) {
-  const clean = name.replace(/[[\]]/g, "").trim();
-  return clean
+  return name
+    .trim()
     .split(/\s+/)
     .slice(0, 2)
     .map((p) => p[0]?.toUpperCase() ?? "")
     .join("");
 }
 
+/** Real client testimonials. Hidden entirely until at least one is added (src/data/testimonials.ts). */
 export function Testimonials() {
   const [[index, dir], setState] = useState<[number, number]>([0, 1]);
   const total = testimonials.length;
   const t = testimonials[index];
-  const hasPlaceholders = testimonials.some((x) => x.placeholder);
 
   const go = (d: number) => setState(([i]) => [(i + d + total) % total, d]);
+
+  if (!hasTestimonials) return null;
 
   return (
     <section id="testimonials" className="section" aria-labelledby="testimonials-title">
@@ -39,11 +41,7 @@ export function Testimonials() {
               Client <span className="gradient-text">Feedback</span>
             </>
           }
-          description={
-            hasPlaceholders
-              ? "Real client feedback will appear here. Entries below are clearly marked placeholders."
-              : "What clients say about working together."
-          }
+          description="What clients say about working together."
         />
 
         <div
@@ -72,7 +70,6 @@ export function Testimonials() {
                 aria-roledescription="slide"
                 aria-label={`${index + 1} of ${total}`}
               >
-                {t.placeholder && <span className="chip chip--sample">Placeholder — replace with a real testimonial</span>}
                 <blockquote className={styles.quote}>
                   <p>{t.quote}</p>
                 </blockquote>

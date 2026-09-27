@@ -40,7 +40,9 @@ export function About() {
                 <p className={styles.metaName}>{site.name}</p>
                 <p className={styles.metaRole}>Software Developer</p>
               </div>
-              <span className="chip chip--accent">Founder · {studio.name}</span>
+              <span className="chip chip--accent">
+                {studio.founderRole} · {studio.name}
+              </span>
             </div>
           </TiltCard>
         </Reveal>

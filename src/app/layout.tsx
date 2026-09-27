@@ -8,6 +8,10 @@ import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { Providers } from "@/components/layout/Providers";
 import { WhatsAppButton } from "@/components/layout/WhatsAppButton";
+import { CursorCircle } from "@/components/layout/CursorCircle";
+import { VoiceGuide } from "@/components/layout/VoiceGuide";
+import { IntroGate } from "@/components/layout/IntroGate";
+import { introBootScript } from "@/lib/intro";
 
 // Variable fonts: one file per family covers every weight used (400–800).
 const sora = Sora({
@@ -74,12 +78,16 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     // data-scroll-behavior lets Next.js turn off CSS smooth scrolling during route
     // changes, so every navigation lands exactly at the top of the new page.
+    // suppressHydrationWarning: introBootScript adds a class to <html> before React loads.
     <html
       lang="en"
       className={`${sora.variable} ${inter.variable} ${mono.variable}`}
       data-scroll-behavior="smooth"
+      suppressHydrationWarning
     >
       <body>
+        {/* Runs before first paint: shows the welcome screen on the first visit (no flash). */}
+        <script dangerouslySetInnerHTML={{ __html: introBootScript }} />
         <a href="#main" className="skip-link">
           Skip to content
         </a>
@@ -91,6 +99,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           </main>
           <Footer />
           <WhatsAppButton />
+          <CursorCircle />
+          <VoiceGuide />
+          <IntroGate />
         </Providers>
       </body>
     </html>

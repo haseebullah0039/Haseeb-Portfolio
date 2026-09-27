@@ -1,0 +1,72 @@
+{
+  "welcome": {
+    "file": "/audio/narration/welcome-050e87a4b4.mp3",
+    "text": "Hello! Welcome to Haseeb Ullah’s portfolio.",
+    "sig": "050e87a4b4"
+  },
+  "on": {
+    "file": "/audio/narration/on-100070713b.mp3",
+    "text": "Voice guide on.",
+    "sig": "100070713b"
+  },
+  "home": {
+    "file": "/audio/narration/home-b0bce46866.mp3",
+    "text": "I’m a software developer, and I also work as a digital marketer and graphic designer. I build websites, web and mobile apps, desktop software, and custom business software. Scroll down, and I’ll walk you through my work.",
+    "sig": "b0bce46866"
+  },
+  "about": {
+    "file": "/audio/narration/about-0c8d897216.mp3",
+    "text": "Let me introduce myself. I’m Haseeb Ullah, a software developer with more than three years of experience. I build websites, web applications, mobile apps, desktop software, and custom business systems. I also work in digital marketing and graphic design, so I can plan, build, brand, and promote a complete digital solution.",
+    "sig": "0c8d897216"
+  },
+  "software": {
+    "file": "/audio/narration/software-eb044dff41.mp3",
+    "text": "Software development is my primary focus. I work on web development, web applications, mobile applications, desktop applications, SaaS applications, custom software, e-commerce solutions, business management systems, dashboards and admin panels, and A P I and backend development.",
+    "sig": "eb044dff41"
+  },
+  "stack": {
+    "file": "/audio/narration/stack-30d15c6cf0.mp3",
+    "text": "My technology stack includes H T M L, C S S, JavaScript, React, Next J S, Node J S, Express J S, Electron J S, Mongo D B, and My S Q L.",
+    "sig": "30d15c6cf0"
+  },
+  "expertise": {
+    "file": "/audio/narration/expertise-e2d37847fc.mp3",
+    "text": "Here are my core strengths. Software development leads, supported by digital marketing and graphic design. These are my own self-assessed levels.",
+    "sig": "e2d37847fc"
+  },
+  "marketing": {
+    "file": "/audio/narration/marketing-44509e7d57.mp3",
+    "text": "In digital marketing, I help brands become easier to find and more engaging online, through search engine optimization, content marketing, social media marketing, Google Ads, and Google Business Profile optimization. I don’t promise guaranteed rankings — just sound strategy and consistent work.",
+    "sig": "44509e7d57"
+  },
+  "design": {
+    "file": "/audio/narration/design-24a30cfe14.mp3",
+    "text": "Graphic design is my creative background. I create logos, brand identities, branding kits, business cards, brochures, posters, social media designs, and marketing materials, using Adobe Photoshop, Adobe Illustrator, and Canva.",
+    "sig": "24a30cfe14"
+  },
+  "services": {
+    "file": "/audio/narration/services-f2d86846a9.mp3",
+    "text": "I offer three services: software development, digital marketing, and graphic design. Software development comes first.",
+    "sig": "f2d86846a9"
+  },
+  "product": {
+    "file": "/audio/narration/product-6823969d29.mp3",
+    "text": "This is Businexa Khata, my universal business management software. It’s a ready-made system designed for retail, shops, schools, clinics, hospitals, gyms, and other businesses.",
+    "sig": "6823969d29"
+  },
+  "portfolio": {
+    "file": "/audio/narration/portfolio-322b4bc919.mp3",
+    "text": "Here are some of my selected projects, with software work first. Click any project to learn more.",
+    "sig": "322b4bc919"
+  },
+  "studio": {
+    "file": "/audio/narration/studio-cc9b26f8a1.mp3",
+    "text": "I’m the founder and CEO of Hesodevix Studio, a software house I started in 2023. The studio creates websites, web and mobile apps, AI automation, e-commerce stores, branding, and business software like CRM and ERP systems, with strategy first, quality work, and clear delivery.",
+    "sig": "cc9b26f8a1"
+  },
+  "contact": {
+    "file": "/audio/narration/contact-45b834ed62.mp3",
+    "text": "Let’s work together! You can call me, send an email, message me on WhatsApp, or fill in this form, and I’ll get back to you.",
+    "sig": "45b834ed62"
+  }
+}

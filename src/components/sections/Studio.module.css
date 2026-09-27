@@ -1,12 +1,18 @@
+/* clip (not hidden) so the sticky logo card still works */
 .section {
-  overflow: hidden;
+  overflow: clip;
 }
 
 .grid {
   display: grid;
   grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
   gap: clamp(40px, 6vw, 90px);
-  align-items: center;
+  align-items: start;
+}
+
+.brandCol {
+  position: sticky;
+  top: calc(var(--nav-h) + 32px);
 }
 
 .logoCard {
@@ -15,8 +21,8 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  aspect-ratio: 1;
   max-width: 440px;
+  padding: 44px 24px 34px;
   margin-inline: auto;
   border-radius: 40px;
   overflow: hidden;
@@ -67,31 +73,7 @@
   box-shadow: 0 0 16px var(--violet);
 }
 
-.logo {
-  position: relative;
-  display: grid;
-  place-items: center;
-  width: 130px;
-  height: 130px;
-  border-radius: 36px;
-  font-family: var(--font-display);
-  font-size: 3.2rem;
-  font-weight: 800;
-  letter-spacing: -0.04em;
-  color: var(--accent-ink);
-  background: linear-gradient(145deg, var(--accent-3), var(--accent) 50%, var(--accent-2));
-  box-shadow:
-    0 30px 60px -20px rgba(255, 122, 24, 0.7),
-    inset 0 2px 0 rgba(255, 255, 255, 0.35);
-}
 
-.logoName {
-  position: relative;
-  margin-top: 26px;
-  font-family: var(--font-display);
-  font-size: 1.4rem;
-  font-weight: 700;
-}
 
 /* White brand plate for the studio logo (the logo artwork has a white background) */
 .plate {
@@ -163,61 +145,136 @@
   font-weight: 800;
 }
 
-.areas {
+.tagline {
+  margin-top: 10px;
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent-3);
+}
+
+.role {
+  position: relative;
+  margin-top: 10px;
+}
+
+.location {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 12px;
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
+.label {
+  margin-bottom: 12px;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--dim);
+}
+
+/* Official services — compact two-column list */
+.services {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
+  gap: 8px;
+}
+
+.services li {
+  display: flex;
+  align-items: center;
   gap: 12px;
-  margin-top: 8px;
+  padding: 10px 14px 10px 10px;
+  border-radius: 12px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  line-height: 1.35;
+  color: var(--text-soft);
+  background: rgba(255, 255, 255, 0.035);
+  border: 1px solid var(--line);
+  transition:
+    border-color 0.25s ease,
+    background-color 0.25s ease;
 }
 
-.areas > li {
+.services li:hover {
+  border-color: var(--accent-line);
+  background: var(--accent-soft);
+}
+
+.serviceIcon {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 32px;
+  height: 32px;
+  border-radius: 9px;
+  color: var(--accent);
+  background: var(--accent-soft);
+  border: 1px solid rgba(255, 122, 24, 0.22);
+}
+
+/* Values */
+.values {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+
+.values > li {
   display: flex;
 }
 
-.area {
+.value {
   display: flex;
-  gap: 14px;
+  flex-direction: column;
+  gap: 10px;
   width: 100%;
   padding: 18px;
   border-radius: var(--r-md);
-  transition: transform 0.4s var(--ease-out), border-color 0.3s, box-shadow 0.3s;
+  transition:
+    transform 0.4s var(--ease-out),
+    border-color 0.3s,
+    box-shadow 0.3s;
 }
 
-.area:hover {
+.value:hover {
   transform: translateY(-3px);
 }
 
-.areaTitle {
-  font-size: 0.98rem;
+.valueTitle {
+  font-size: 1rem;
 }
 
-.areaText {
-  margin-top: 4px;
+.valueText {
   font-size: 0.84rem;
   line-height: 1.5;
   color: var(--muted);
 }
 
-.caps {
+.industries {
   display: flex;
   flex-wrap: wrap;
-  gap: 10px 22px;
-}
-
-.caps li {
-  display: inline-flex;
-  align-items: center;
   gap: 8px;
-  font-size: 0.88rem;
-  color: var(--text-soft);
-}
-
-.caps svg {
-  color: var(--accent);
 }
 
 .actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
   margin-top: 8px;
+}
+
+.contactBtn {
+  text-transform: none;
+  letter-spacing: 0.01em;
 }
 
 @keyframes spin {
@@ -230,13 +287,31 @@
   .grid {
     grid-template-columns: 1fr;
   }
+  .brandCol {
+    position: relative;
+    top: 0;
+  }
   .logoCard {
     max-width: 340px;
   }
 }
 
-@media (max-width: 560px) {
-  .areas {
+@media (max-width: 720px) {
+  .values {
     grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 560px) {
+  .services {
+    grid-template-columns: 1fr;
+  }
+  .actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .actions :global(.btn),
+  .actions > div {
+    width: 100%;
   }
 }

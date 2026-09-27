@@ -26,7 +26,8 @@ All content lives in `src/data/`. You never need to touch a component to update 
 | `projects.ts` | Portfolio projects (homepage featured + `/portfolio`) |
 | `product.ts` | Businexa Khata — universal business management software (`/product`), incl. live app link |
 | `studio.ts` | Hesodevix Studio section (name, intro, website, logo) |
-| `testimonials.ts` | Testimonials |
+| `testimonials.ts` | Real client testimonials (section is hidden until you add one) |
+| `narration.ts` | What the voice guide says for each section |
 
 ### Placeholders to replace
 
@@ -37,7 +38,7 @@ Missing information was left as clearly marked placeholders instead of being mad
 - **Projects**: every entry with `placeholder: true` in `projects.ts` is a sample slot and shows a "Sample" badge on the site. Replace it with a real project or delete it.
 - **Product**: `product.ts` → `modules`, `technologies`, `screenshots`. Modules show as `[ADD MODULE NAME]` until you fill them in. The tech and screenshot sections stay hidden while they are empty.
 - **Businexa Khata app link**: `product.ts` → `appUrl`. Update it if the app moves to its own domain.
-- **Testimonials**: all three are placeholders. Replace them with real client feedback and set `placeholder: false`.
+- **Testimonials**: the section stays hidden until you add a real one to `testimonials.ts`. The file has a copy-and-fill template, and up to ~10 work well. Only use real feedback, shared with the client's permission.
 
 ### Adding a project
 
@@ -55,6 +56,27 @@ To receive messages directly, create a form endpoint (e.g. [Formspree](https://f
 ```
 NEXT_PUBLIC_FORM_ENDPOINT=https://formspree.io/f/xxxxxxx
 ```
+
+## Voice guide
+
+A male voice welcomes visitors and describes each section as they reach it.
+Browsers only allow sound after the visitor's first click, so the first visit opens
+with a short welcome screen. Its "Enter Portfolio" button starts the voice guide;
+"Enter without sound" skips it (`src/components/layout/IntroGate.tsx`).
+Visitors can switch the guide off with the speaker button in the bottom-left corner.
+
+- **What it says:** `src/data/narration.ts`. It's written for listening, so your name is spelled "Haseeb Ullah" there for pronunciation only. On-screen text still uses "Haseebullah".
+- **Recordings:** `public/audio/narration/`. They were generated locally with [Kokoro](https://huggingface.co/hexgrad/Kokoro-82M), an open-source voice model (Apache-2.0), using the male voice "Michael".
+
+After editing any narration text, regenerate the recordings:
+
+```bash
+npm i --no-save kokoro-js @breezystack/lamejs tsx   # one-time; not added to package.json
+npm run narration
+```
+
+Only changed lines are re-recorded. If a line's recording is missing or out of
+date, the site uses the browser's best male voice for that line instead.
 
 ## SEO
 

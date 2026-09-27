@@ -15,8 +15,8 @@ export const product = {
   tagline: "One ready-made system, adaptable to many kinds of business.",
   description:
     "Businexa Khata is a ready-made universal business management software designed to support different types of businesses. Instead of building a new system from scratch for every organisation, it provides a single, adaptable foundation for managing day-to-day business operations.",
-  /** Live web app (login page). Update this if the app moves to its own domain. */
-  appUrl: "https://mediumspringgreen-monkey-383081.hostingersite.com/login",
+  /** Live web app, hosted on the Hesodevix Studio domain. */
+  appUrl: "https://businexakhata.hesodevixstudio.com",
 
   /** Business environments the software is designed for. */
   businessTypes: [

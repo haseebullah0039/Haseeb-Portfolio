@@ -1,0 +1,59 @@
+/*
+ * Outer element is moved to the pointer position with a transform (no transition,
+ * so it tracks the cursor directly). The inner ring handles size/colour changes.
+ */
+.outer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  width: 0;
+  height: 0;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+  will-change: transform;
+}
+
+.outer[data-visible="true"] {
+  opacity: 1;
+}
+
+.ring {
+  position: absolute;
+  top: -18px;
+  left: -18px;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1.5px solid var(--accent);
+  background: rgba(255, 122, 24, 0);
+  box-shadow: 0 0 12px rgba(255, 122, 24, 0.35);
+  transition:
+    transform 0.3s var(--ease-out),
+    background-color 0.25s ease,
+    border-color 0.25s ease;
+}
+
+/* Over links, buttons and form fields: grow and fill softly */
+.outer[data-hover="true"] .ring {
+  transform: scale(1.6);
+  background: rgba(255, 122, 24, 0.14);
+  border-color: rgba(255, 164, 92, 0.9);
+}
+
+/* While the mouse button is held down */
+.outer[data-pressed="true"] .ring {
+  transform: scale(0.75);
+}
+
+.outer[data-hover="true"][data-pressed="true"] .ring {
+  transform: scale(1.3);
+}
+
+/* Touch devices: never shown */
+@media (hover: none), (pointer: coarse) {
+  .outer {
+    display: none;
+  }
+}

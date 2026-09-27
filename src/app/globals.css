@@ -561,6 +561,11 @@ main {
   background: linear-gradient(145deg, var(--accent-3), var(--accent));
 }
 
+/* Welcome screen open (see IntroGate): no page scrolling behind it */
+html.intro-open {
+  overflow: hidden;
+}
+
 main:focus {
   outline: none;
 }
